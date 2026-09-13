@@ -72,7 +72,7 @@ if game:GetService("CoreGui"):FindFirstChild("TeiaHub_ToggleGui") then
     game:GetService("CoreGui").TeiaHub_ToggleGui:Destroy()
 end
 
--- [[ NOVO BOTÃO FLUTUANTE COM TOGGLE CORRIGIDO ]]
+-- [[ NOVO BOTÃO FLUTUANTE COM TOGGLE ]]
 local ToggleGui = Instance.new("ScreenGui")
 local ToggleButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -100,7 +100,7 @@ UIStroke.Color = Color3.fromRGB(120, 120, 255)
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke.Parent = ToggleButton
 
--- LÓGICA CORRIGIDA DE ABRIR/FECHAR
+-- LÓGICA DE ABRIR/FECHAR
 local uiVisible = true
 ToggleButton.MouseButton1Click:Connect(function()
     uiVisible = not uiVisible
@@ -138,8 +138,9 @@ local Tabs = {
     Murder  = Window:AddTab({ Title = "Murder", Icon = "sword" }),
     Robber  = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
     Garden  = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
-    Troll   = Window:AddTab({ Title = "Trollagem", Icon = "smile" }),  -- ✅ vírgula
-    Moites  = Window:AddTab({ Title = "noites", Icon = "smile" })
+    Troll   = Window:AddTab({ Title = "Trollagem", Icon = "smile" }),
+    Moites  = Window:AddTab({ Title = "noites", Icon = "smile" }),
+    Daybot  = Window:AddTab({ Title = "Daybot", Icon = "crosshair" })
 }
 
 ----------------------------------------------------
@@ -399,6 +400,10 @@ Tabs.Garden:AddButton({
     end
 })
 
+----------------------------------------------------
+-- 5ª ABA: NOITES
+----------------------------------------------------
+
 Tabs.Moites:AddButton({
     Title = "Executar Script 99",
     Description = "Carrega o script para 99",
@@ -407,9 +412,8 @@ Tabs.Moites:AddButton({
     end
 })
 
-
 ----------------------------------------------------
--- 5ª ABA: TROLLAGEM
+-- 6ª ABA: TROLLAGEM
 ----------------------------------------------------
 
 Tabs.Troll:AddButton({
@@ -417,6 +421,18 @@ Tabs.Troll:AddButton({
     Description = "Carrega o script FE Trolling GUI",
     Callback = function()
         safeLoad("https://raw.githubusercontent.com/Legityt252/02/refs/heads/main/FE%20Trolling%20GUI.lua", "FE Trolling GUI")
+    end
+})
+
+----------------------------------------------------
+-- 7ª ABA: DAYBOT
+----------------------------------------------------
+
+Tabs.Daybot:AddButton({
+    Title = "Nome do Seu Botao",
+    Description = "Clique para executar o script",
+    Callback = function()
+        safeLoad("COLOQUE_A_URL_AQUI", "Daybot Script")
     end
 })
 
