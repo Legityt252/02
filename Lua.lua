@@ -139,7 +139,7 @@ local Tabs = {
     Robber = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
     Garden = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
     Troll = Window:AddTab({ Title = "Trollagem", Icon = "smile" })
-    moites = Window:AddTab({ Title = "noites", Icon = "smile" })
+    Moites = Window:AddTab({ Title = "noites", Icon = "smile" })
 }
 
 ----------------------------------------------------
@@ -399,7 +399,7 @@ Tabs.Garden:AddButton({
     end
 })
 
-Tabs.noites:AddButton({
+Tabs.Moites:AddButton({
     Title = "Executar Script 99",
     Description = "Carrega o script para 99",
     Callback = function()
