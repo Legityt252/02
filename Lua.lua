@@ -134,12 +134,12 @@ end
 -- ====================================================
 
 local Tabs = {
-    Main = Window:AddTab({ Title = "Blox Fruit / King Legacy", Icon = "home" }),
-    Murder = Window:AddTab({ Title = "Murder", Icon = "sword" }),
-    Robber = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
-    Garden = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
-    Troll = Window:AddTab({ Title = "Trollagem", Icon = "smile" })
-    Moites = Window:AddTab({ Title = "noites", Icon = "smile" })
+    Main    = Window:AddTab({ Title = "Blox Fruit / King Legacy", Icon = "home" }),
+    Murder  = Window:AddTab({ Title = "Murder", Icon = "sword" }),
+    Robber  = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
+    Garden  = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
+    Troll   = Window:AddTab({ Title = "Trollagem", Icon = "smile" }),  -- ✅ vírgula
+    Moites  = Window:AddTab({ Title = "noites", Icon = "smile" })
 }
 
 ----------------------------------------------------
