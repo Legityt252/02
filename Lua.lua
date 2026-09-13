@@ -1,6 +1,6 @@
 -- [[ TEIA HUB - COMPLETO ]]
 
--- 1. CARREGAMENTO DA INTERFACE FLUENT (Primeira Prioridade)
+-- 1. CARREGAMENTO DA INTERFACE FLUENT
 local Fluent
 local success, err = pcall(function()
     Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
@@ -125,14 +125,15 @@ end
 -- ====================================================
 
 local Tabs = {
-    Main    = Window:AddTab({ Title = "Blox Fruit / King Legacy", Icon = "home" }),
-    Murder  = Window:AddTab({ Title = "Murder", Icon = "sword" }),
-    Robber  = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
-    Garden  = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
-    Troll   = Window:AddTab({ Title = "Trollagem", Icon = "smile" }),
-    Moites  = Window:AddTab({ Title = "99 Noites", Icon = "🫎" }),
-    Daybot  = Window:AddTab({ Title = "Daybot", Icon = "crosshair" }),
-    Music   = Window:AddTab({ Title = "Música", Icon = "music" })
+    Main        = Window:AddTab({ Title = "Blox Fruit / King Legacy", Icon = "home" }),
+    OutrosJogos = Window:AddTab({ Title = "Outros Jogos", Icon = "gamepad-2" }),
+    Murder      = Window:AddTab({ Title = "Murder", Icon = "sword" }),
+    Robber      = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
+    Garden      = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
+    Troll       = Window:AddTab({ Title = "Trollagem", Icon = "smile" }),
+    Moites      = Window:AddTab({ Title = "99 Noites", Icon = "🫎" }),
+    Daybot      = Window:AddTab({ Title = "Daybot", Icon = "crosshair" }),
+    Music       = Window:AddTab({ Title = "Música", Icon = "music" })
 }
 
 ----------------------------------------------------
@@ -295,152 +296,80 @@ Tabs.Main:AddButton({
 })
 
 ----------------------------------------------------
--- OUTRAS ABAS
+-- 2ª ABA: OUTROS JOGOS (100 BOTÕES PRONTOS PARA VOCÊ ADICIONAR SEUS SCRIPTS)
+-- COMO USAR QUANDO ESTIVER OFFLINE:
+-- 1. Troque "Nome do Jogo" pelo nome do seu jogo.
+-- 2. Troque "COLE_O_LINK_AQUI" pelo link do script raw.
 ----------------------------------------------------
 
-Tabs.Murder:AddButton({
-    Title = "Executar Script Murder",
-    Callback = function() safeLoad("https://LINK_DO_SCRIPT_MURDER_AQUI", "Murder Script") end
-})
-
-Tabs.Robber:AddButton({
-    Title = "Executar Script Robber Hot",
-    Callback = function() safeLoad("https://LINK_DO_SCRIPT_ROBBER_HOT_AQUI", "Robber Hot Script") end
-})
-
-Tabs.Garden:AddButton({
-    Title = "Executar Script Go Garden",
-    Callback = function() safeLoad("https://LINK_DO_SCRIPT_GO_GARDEN_AQUI", "Go Garden Script") end
-})
-
-Tabs.Troll:AddButton({
-    Title = "Executar FE Trolling GUI",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/Legityt252/02/refs/heads/main/FE%20Trolling%20GUI.lua", "FE Trolling GUI") end
-})
-
-----------------------------------------------------
--- ABA: 99 NOITES
-----------------------------------------------------
-
-Tabs.Moites:AddButton({
-    Title = "Executar Rifton Loader",
-    Callback = function() safeLoad("https://rifton.top/loader.lua", "99 Script") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar Vape Voidware Addons",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", "VW Addons") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar H4xScripts Loader",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", "H4xScripts") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar VW Extra Forest",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", "VW Extra") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar Kenniel Script",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/Kenniel123/99-Nights-in-the-Forest/refs/heads/main/99%20Nights%20in%20the%20Forest", "Kenniel Script") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar Hutao Hub",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/SLK-gaming/Hutao-Hub/refs/heads/main/99-Nights-In-The-Forest.txt", "Hutao Hub") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar PhantomFlux",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/sudaisontopxd/PhantomFlux/refs/heads/main/99NightsInTheForest", "PhantomFlux") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar Script Pastebin",
-    Callback = function() safeLoad("https://pastebin.com/raw/pMVn317S", "Pastebin Script") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar Auto Food",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/99nightsscripts/main/autofood.lua", "Auto Food") end
-})
-
-Tabs.Moites:AddButton({
-    Title = "Executar KillAura & ESP (Kenniel)",
-    Callback = function() safeLoad("https://raw.githubusercontent.com/Kenniel123/99-Nights-in-the-forest-KillAura-ESP/main/script.lua", "KillAura & ESP") end
-})
-
-----------------------------------------------------
--- ABA: DAYBOT
-----------------------------------------------------
-
-Tabs.Daybot:AddButton({
-    Title = "Executar CentuDox Hub",
-    Description = "Carrega o script CentuDox",
-    Callback = function()
-        safeLoad("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CENTUDOX%20AIMBOT.xyz", "CentuDox Hub")
-    end
-})
-
-----------------------------------------------------
--- ABA: MÚSICA
-----------------------------------------------------
-
-local SoundService = game:GetService("SoundService")
-local currentSound = nil
-
-Tabs.Music:AddInput("MusicID", {
-    Title = "ID da Música (Roblox)",
-    Default = "",
-    Placeholder = "Digite o Sound ID aqui...",
-    Numeric = true,
-    Finished = false,
-    Callback = function(Value)
-        _G.SelectedMusicID = Value
-    end
-})
-
-Tabs.Music:AddButton({
-    Title = "▶️ Tocar Música",
-    Callback = function()
-        if _G.SelectedMusicID and _G.SelectedMusicID ~= "" then
-            if currentSound then
-                currentSound:Stop()
-                currentSound:Destroy()
-            end
-
-            currentSound = Instance.new("Sound")
-            currentSound.SoundId = "rbxassetid://" .. tostring(_G.SelectedMusicID)
-            currentSound.Volume = 1
-            currentSound.Looped = true
-            currentSound.Parent = SoundService
-            currentSound:Play()
-
-            Fluent:Notify({ Title = "Música", Content = "Tocando áudio ID: " .. _G.SelectedMusicID, Duration = 3 })
-        else
-            Fluent:Notify({ Title = "Erro", Content = "Insira um ID de música válido!", Duration = 3 })
-        end
-    end
-})
-
-Tabs.Music:AddButton({
-    Title = "⏹️ Parar Música",
-    Callback = function()
-        if currentSound then
-            currentSound:Stop()
-            currentSound:Destroy()
-            currentSound = nil
-            Fluent:Notify({ Title = "Música", Content = "Música parada.", Duration = 2 })
-        end
-    end
-})
-
-Window:SelectTab(1)
-
-Fluent:Notify({
-    Title = "Teia HUB",
-    Content = "Menu carregado com sucesso!",
-    Duration = 4
-})
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 1: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 1") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 2: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 2") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 3: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 3") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 4: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 4") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 5: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 5") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 6: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 6") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 7: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 7") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 8: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 8") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 9: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 9") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 10: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 10") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 11: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 11") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 12: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 12") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 13: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 13") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 14: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 14") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 15: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 15") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 16: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 16") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 17: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 17") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 18: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 18") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 19: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 19") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 20: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 20") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 21: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 21") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 22: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 22") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 23: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 23") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 24: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 24") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 25: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 25") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 26: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 26") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 27: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 27") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 28: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 28") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 29: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 29") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 30: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 30") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 31: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 31") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 32: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 32") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 33: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 33") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 34: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 34") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 35: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 35") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 36: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 36") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 37: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 37") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 38: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 38") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 39: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 39") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 40: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 40") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 41: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 41") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 42: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 42") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 43: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 43") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 44: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 44") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 45: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 45") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 46: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 46") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 47: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 47") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 48: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 48") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 49: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 49") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 50: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 50") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 51: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 51") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 52: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 52") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 53: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 53") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 54: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 54") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 55: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 55") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 56: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 56") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 57: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 57") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 58: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 58") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 59: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 59") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 60: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 60") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 61: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 61") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 62: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 62") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 63: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 63") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 64: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 64") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 65: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 65") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 66: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 66") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 67: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 67") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 68: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 68") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 69: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 69") end })
+Tabs.OutrosJogos:AddButton({ Title = "Jogo 70: Nome do Jogo", Callback = function() safeLoad("COLE_O_LINK_AQUI", "Jogo 70") end })
+Tabs.OutrosJogos:AddButton({ Ti
