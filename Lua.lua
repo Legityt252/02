@@ -1,4 +1,3 @@
--- [[ TEIA HUB - VERSÃO RAYFIELD (BY JOÃO NETO) ]]
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
