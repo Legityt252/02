@@ -429,7 +429,7 @@ Tabs.Troll:AddButton({
 ----------------------------------------------------
 
 Tabs.Daybot:AddButton({
-    Title = "Nome do Seu Botao",
+    Title = "Aim bot hsfull",
     Description = "Clique para executar o script",
     Callback = function()
         safeLoad("COLOQUE_A_URL_AQUI", "Daybot Script")
