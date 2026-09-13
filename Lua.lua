@@ -432,7 +432,7 @@ Tabs.Daybot:AddButton({
     Title = "Aim bot hsfull",
     Description = "Clique para executar o script",
     Callback = function()
-        safeLoad("COLOQUE_A_URL_AQUI", "Daybot Script")
+        safeLoad("loadstring(game:HttpGet("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CENTUDOX%20AIMBOT.xyz", true))()", "Daybot Script")
     end
 })
 
