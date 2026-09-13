@@ -1,4 +1,4 @@
--- [[ TEIA HUB - COM ANTI-LAG & CÂMERA FLUIDA AUTOMÁTICOS ]]
+-- [[ TEIA HUB - COM ANTI-LAG, CÂMERA FLUIDA & SERVER HOP VAZIO ]]
 
 local Fluent
 local success, err = pcall(function()
@@ -142,6 +142,55 @@ end
 local function runFullOptimization()
     runUltraAntiLag()
     enableCameraSmoothness()
+end
+
+-- [[ FUNÇÃO SERVER HOP COM MENOS JOGADORES (VAZIO) ]]
+local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+
+local function hopToLowestServer()
+    Fluent:Notify({ Title = "Server Hop", Content = "Procurando servidor vazio...", Duration = 3 })
+    pcall(function()
+        local placeId = game.PlaceId
+        local lowestServer = nil
+        local minPlayers = math.huge
+        local cursor = ""
+        
+        for i = 1, 5 do
+            local url = "https://games.roblox.com/v1/games/" .. tostring(placeId) .. "/servers/Public?sortOrder=Asc&limit=100"
+            if cursor ~= "" then
+                url = url .. "&cursor=" .. cursor
+            end
+            
+            local success, response = pcall(function()
+                return game:HttpGet(url)
+            end)
+
+            if success then
+                local data = HttpService:JSONDecode(response)
+                if data and data.data then
+                    for _, server in ipairs(data.data) do
+                        if server.id ~= game.JobId and server.playing < server.maxPlayers then
+                            if server.playing < minPlayers then
+                                minPlayers = server.playing
+                                lowestServer = server.id
+                            end
+                        end
+                    end
+                    if lowestServer and minPlayers <= 2 then break end
+                    cursor = data.nextPageCursor or ""
+                    if not cursor or cursor == "" then break end
+                end
+            end
+        end
+
+        if lowestServer then
+            Fluent:Notify({ Title = "Teleportando", Content = "Servidor encontrado! Jogadores: " .. tostring(minPlayers), Duration = 3 })
+            TeleportService:TeleportToPlaceInstance(placeId, lowestServer, game.Players.LocalPlayer)
+        else
+            Fluent:Notify({ Title = "Aviso", Content = "Nenhum servidor vazio encontrado. Tentando novamente...", Duration = 3 })
+        end
+    end)
 end
 
 -- [[ EXECUÇÃO AUTOMÁTICA AO INICIAR O SCRIPT ]]
@@ -290,6 +339,13 @@ Tabs.Config:AddButton({
     Callback = function()
         runFullOptimization()
         Fluent:Notify({ Title = "Otimização", Content = "Anti-Lag + Motion Blur reativados!", Duration = 2 })
+    end
+})
+
+Tabs.Config:AddButton({
+    Title = "🌐 Servidor Vazio (Hop)",
+    Callback = function()
+        hopToLowestServer()
     end
 })
 
