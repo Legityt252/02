@@ -139,6 +139,7 @@ local Tabs = {
     Robber = Window:AddTab({ Title = "Robber Hot", Icon = "user" }),
     Garden = Window:AddTab({ Title = "Go Garden", Icon = "trees" }),
     Troll = Window:AddTab({ Title = "Trollagem", Icon = "smile" })
+    moites = Window:AddTab({ Title = "noites", Icon = "smile" })
 }
 
 ----------------------------------------------------
@@ -397,6 +398,15 @@ Tabs.Garden:AddButton({
         safeLoad("https://LINK_DO_SCRIPT_GO_GARDEN_AQUI", "Go Garden Script")
     end
 })
+
+Tabs.noites:AddButton({
+    Title = "Executar Script 99",
+    Description = "Carrega o script para 99",
+    Callback = function()
+        safeLoad("https://rifton.top/loader.lua", "99 Script")
+    end
+})
+
 
 ----------------------------------------------------
 -- 5ª ABA: TROLLAGEM
