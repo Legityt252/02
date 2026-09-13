@@ -429,10 +429,10 @@ Tabs.Troll:AddButton({
 ----------------------------------------------------
 
 Tabs.Daybot:AddButton({
-    Title = "Aim bot hsfull",
-    Description = "Clique para executar o script",
+    Title = "Executar CentuDox Hub",
+    Description = "Carrega o script CentuDox",
     Callback = function()
-        safeLoad("loadstring(game:HttpGet("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CENTUDOX%20AIMBOT.xyz", true))()", "Daybot Script")
+        safeLoad("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CENTUDOX%20AIMBOT.xyz", "CentuDox Hub")
     end
 })
 
