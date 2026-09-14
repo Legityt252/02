@@ -1,5 +1,12 @@
+-- Teia HUB 🕸️ | por João Neto
+local success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+end)
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+if not success or not Rayfield then
+    task.wait(1)
+    Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+end
 
 local Window = Rayfield:CreateWindow({
    Name = "Teia HUB 🕸️ | por João Neto",
@@ -74,7 +81,7 @@ RunService.RenderStepped:Connect(function()
 end)
 
 -- [[ OTIMIZAÇÃO POR DISTÂNCIA (CULLING AUTOMÁTICO) ]]
-local RenderDistance = 350 -- Distância limite para ocultar objetos/NPCs distantes
+local RenderDistance = 350
 local function enableDistanceCulling()
     task.spawn(function()
         local player = game:GetService("Players").LocalPlayer
@@ -85,7 +92,6 @@ local function enableDistanceCulling()
                     local myPos = char.HumanoidRootPart.Position
                     
                     for _, obj in pairs(workspace:GetChildren()) do
-                        -- Ignora o próprio jogador e a câmera
                         if obj ~= char and obj.Name ~= "Camera" then
                             local part = obj:IsA("BasePart") and obj or obj:FindFirstChildWhichIsA("BasePart", true)
                             if part then
@@ -208,6 +214,7 @@ end)
 -- [[ ABAS DA INTERFACE RAYFIELD ]]
 -- ====================================================
 
+local TabBiblia = Window:CreateTab("Palavra de Deus 📖", 4483362458)
 local TabMain = Window:CreateTab("Blox / King", 4483362458)
 local TabOutros = Window:CreateTab("Outros Jogos", 4483362458)
 local TabMurder = Window:CreateTab("Murder", 4483362458)
@@ -219,7 +226,113 @@ local TabDaybot = Window:CreateTab("Daybot", 4483362458)
 local TabMusic = Window:CreateTab("Música", 4483362458)
 local TabConfig = Window:CreateTab("Configurações", 4483362458)
 
--- 1. BLOX FRUIT / KING LEGACY
+-- ====================================================
+-- [[ 0. PALAVRA DE DEUS ]]
+-- ====================================================
+
+local traducaoLivros = {
+    ["Genesis"] = "Gênesis", ["Exodus"] = "Êxodo", ["Leviticus"] = "Levítico", ["Numbers"] = "Números", ["Deuteronomy"] = "Deuteronômio",
+    ["Joshua"] = "Josué", ["Judges"] = "Juízes", ["Ruth"] = "Rute", ["1 Samuel"] = "1 Samuel", ["2 Samuel"] = "2 Samuel",
+    ["1 Kings"] = "1 Reis", ["2 Kings"] = "2 Reis", ["1 Chronicles"] = "1 Crônicas", ["2 Chronicles"] = "2 Crônicas",
+    ["Ezra"] = "Esdras", ["Nehemiah"] = "Neemias", ["Esther"] = "Ester", ["Job"] = "Jó", ["Psalms"] = "Salmos", ["Psalm"] = "Salmos",
+    ["Proverbs"] = "Provérbios", ["Ecclesiastes"] = "Eclesiastes", ["Song of Solomon"] = "Cânticos", ["Isaiah"] = "Isaías",
+    ["Jeremiah"] = "Jeremias", ["Lamentations"] = "Lamentações", ["Ezekiel"] = "Ezequiel", ["Daniel"] = "Daniel",
+    ["Hosea"] = "Oséias", ["Joel"] = "Joel", ["Amos"] = "Amós", ["Obadiah"] = "Obadias", ["Jonah"] = "Jonas", ["Micah"] = "Miquéias",
+    ["Nahum"] = "Naum", ["Habakkuk"] = "Habacuque", ["Zephaniah"] = "Sofonias", ["Haggai"] = "Ageu", ["Zechariah"] = "Zacarias",
+    ["Malachi"] = "Malaquias", ["Matthew"] = "Mateus", ["Mark"] = "Marcos", ["Luke"] = "Lucas", ["John"] = "João",
+    ["Acts"] = "Atos", ["Romans"] = "Romanos", ["1 Corinthians"] = "1 Coríntios", ["2 Corinthians"] = "2 Coríntios",
+    ["Galatians"] = "Gálatas", ["Ephesians"] = "Efésios", ["Philippians"] = "Filipenses", ["Colossians"] = "Colossenses",
+    ["1 Thessalonians"] = "1 Tessalonicenses", ["2 Thessalonians"] = "2 Tessalonicenses", ["1 Timothy"] = "1 Timóteo",
+    ["2 Timothy"] = "2 Timóteo", ["Titus"] = "Tito", ["Philemon"] = "Filemom", ["Hebrews"] = "Hebreus", ["James"] = "Tiago",
+    ["1 Peter"] = "1 Pedro", ["2 Peter"] = "2 Pedro", ["1 John"] = "1 João", ["2 John"] = "2 João", ["3 John"] = "3 João",
+    ["Jude"] = "Judas", ["Revelation"] = "Apocalipse"
+}
+
+local function traduzirReferencia(ref)
+    for en, pt in pairs(traducaoLivros) do
+        if ref:find("^" .. en) then
+            return ref:gsub("^" .. en, pt)
+        end
+    end
+    return ref
+end
+
+local function gerarExplicacaoDinamica(livro)
+    local l = livro:lower()
+    if l:find("salmo") or l:find("psalm") then
+        return "Este Salmo é uma oração de louvor, gratidão e confiança no Senhor. Ele nos lembra que a presença divina renova nossas forças e nos dá abrigo nas horas de tribulação."
+    elseif l:find("prov") then
+        return "Um conselho prático de sabedoria para guiar nossas escolhas diárias, instruindo-nos a andar com prudência, justiça e temor a Deus."
+    elseif l:find("joao") or l:find("john") or l:find("mateus") or l:find("matthew") or l:find("marcos") or l:find("mark") or l:find("lucas") or l:find("luke") then
+        return "Esta passagem traz os ensinamentos e a vida de Jesus Cristo, destacando o amor incondicional, o perdão e o caminho da salvação eterna."
+    elseif l:find("romanos") or l:find("corintios") or l:find("efesios") or l:find("filipenses") or l:find("galatas") or l:find("hebreus") then
+        return "Uma carta apostólica com ensinamentos profundos para fortalecer nossa fé, nos exortando à perseverança, santidade e comunhão no amor de Cristo."
+    elseif l:find("genesis") or l:find("exodo") or l:find("reis") or l:find("samuel") or l:find("cronicas") then
+        return "Um registro do grande poder e da fidelidade de Deus na história do Seu povo, mostrando que o Senhor cumpre todas as Suas promessas."
+    elseif l:find("isaias") or l:find("jeremias") or l:find("ezequiel") or l:find("daniel") then
+        return "Uma mensagem profética que nos convida ao arrependimento, à esperança e ao alinhamento do nosso coração com a vontade soberana de Deus."
+    else
+        return "Esta palavra nos inspira a confiar inteiramente nos planos de Deus, lembrando-nos que Ele cuida de cada detalhe das nossas vidas com amor e justiça."
+    end
+end
+
+local listaFallbacks = {
+    {ref = "Salmo 23:1", texto = "O Senhor é o meu pastor, nada me faltará.", livro = "Salms"},
+    {ref = "Provérbios 3:5", texto = "Confie no Senhor de todo o seu coração e não se apoie em sua própria inteligência.", livro = "Proverbs"},
+    {ref = "Filipenses 4:13", texto = "Tudo posso naquele que me fortalece.", livro = "Philippians"},
+    {ref = "Josué 1:9", texto = "Seja forte e corajoso! Não se apavore nem desanime, pois o Senhor, o seu Deus, estará com você por onde você andar.", livro = "Joshua"}
+}
+
+local BibliaUnicaParagraph = TabBiblia:CreateParagraph({
+    Title = "📖 Carregando Palavra...",
+    Content = "Buscando versículo e explicação..."
+})
+
+local function carregarVersiculo()
+    BibliaUnicaParagraph:Set({ Title = "📖 Carregando...", Content = "Buscando texto na API..." })
+    
+    local sucesso, resposta = pcall(function()
+        local responseRaw = game:HttpGet("https://bible-api.com/?read=random")
+        return game:GetService("HttpService"):JSONDecode(responseRaw)
+    end)
+
+    if sucesso and resposta and resposta.reference then
+        local referenciaTraduzida = traduzirReferencia(resposta.reference)
+        local texto = resposta.text:gsub("\n", " "):gsub("%s+", " ")
+        local livro = (resposta.verses and resposta.verses[1] and resposta.verses[1].book_name) or resposta.reference
+        
+        local explicacaoTexto = gerarExplicacaoDinamica(livro)
+        local conteudoFinal = "📜 Versículo:\n\"" .. texto .. "\"\n\n💡 Explicação Teológica:\n" .. explicacaoTexto
+
+        BibliaUnicaParagraph:Set({
+            Title = "📖 " .. referenciaTraduzida,
+            Content = conteudoFinal
+        })
+    else
+        local fallbackEscolhido = listaFallbacks[math.random(1, #listaFallbacks)]
+        local expFallback = gerarExplicacaoDinamica(fallbackEscolhido.livro)
+        
+        BibliaUnicaParagraph:Set({
+            Title = "📖 " .. fallbackEscolhido.ref,
+            Content = "📜 Versículo:\n\"" .. fallbackEscolhido.texto .. "\"\n\n💡 Explicação Teológica:\n" .. expFallback
+        })
+    end
+end
+
+task.spawn(function()
+    task.wait(1)
+    carregarVersiculo()
+end)
+
+task.spawn(function()
+    while task.wait(120) do
+        carregarVersiculo()
+    end
+end)
+
+-- ====================================================
+-- [[ 1. BLOX FRUIT / KING LEGACY ]]
+-- ====================================================
 TabMain:CreateButton({ Name = "Gravity Hub", Callback = function() safeLoad("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua", "Gravity Hub") end })
 TabMain:CreateButton({ Name = "Aegis Loader", Callback = function() safeLoad("https://luaegis.net/scripts/v4/loaders/08f7c7f0-7917-4a53-99b5-84ae0dec28a9.lua", "Aegis Loader") end })
 TabMain:CreateButton({ Name = "Omgshit MainLoader", Callback = function() safeLoad("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua", "Omgshit MainLoader") end })
@@ -243,105 +356,48 @@ TabMain:CreateButton({ Name = "Genesis Hub (King Legacy)", Callback = function()
 TabMain:CreateButton({ Name = "Redz Hub", Callback = function() safeLoad("https://raw.githubusercontent.com/huy384/redzHub/refs/heads/main/redzHub.lua", "Redz Hub") end })
 TabMain:CreateButton({ Name = "QuantumOnyx", Callback = function() safeLoad("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua", "QuantumOnyx") end })
 
--- 2. OUTROS JOGOS
+-- [[ 2. OUTROS JOGOS ]]
 TabOutros:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 3. MURDER
+-- [[ 3. MURDER ]]
 TabMurder:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 4. ROBBER HOT
+-- [[ 4. ROBBER HOT ]]
 TabRobber:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 5. GO GARDEN
+-- [[ 5. GO GARDEN ]]
 TabGarden:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 6. TROLLAGEM
-TabTroll:CreateButton({ Name = "FE Trolling GUI", Callback = function() safeLoad("https://raw.githubusercontent.com/Legityt252/02/refs/heads/main/FE%20Trolling%20GUI.lua", "FE Trolling GUI") end })
+-- [[ 6. TROLLAGEM ]]
+TabTroll:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AUNK", "Em Breve") end })
 
--- 7. 99 NOITES
-TabMoites:CreateButton({ Name = "Rifton Loader", Callback = function() safeLoad("https://rifton.top/loader.lua", "Rifton Loader") end })
-TabMoites:CreateButton({ Name = "Vape Voidware Addons", Callback = function() safeLoad("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", "Vape Voidware Addons") end })
-TabMoites:CreateButton({ Name = "H4xScripts Loader", Callback = function() safeLoad("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", "H4xScripts Loader") end })
-TabMoites:CreateButton({ Name = "VW Extra Forest", Callback = function() safeLoad("https://raw.githubusercontent.com/VapeVoidware/VWExtra/main/NightsInTheForest.lua", "VW Extra Forest") end })
-TabMoites:CreateButton({ Name = "Kenniel Script", Callback = function() safeLoad("https://raw.githubusercontent.com/Kenniel123/99-Nights-in-the-Forest/refs/heads/main/99%20Nights%20in%20the%20Forest", "Kenniel Script") end })
-TabMoites:CreateButton({ Name = "Hutao Hub", Callback = function() safeLoad("https://raw.githubusercontent.com/SLK-gaming/Hutao-Hub/refs/heads/main/99-Nights-In-The-Forest.txt", "Hutao Hub") end })
-TabMoites:CreateButton({ Name = "PhantomFlux", Callback = function() safeLoad("https://raw.githubusercontent.com/sudaisontopxd/PhantomFlux/refs/heads/main/99NightsInTheForest", "PhantomFlux") end })
-TabMoites:CreateButton({ Name = "Script Pastebin", Callback = function() safeLoad("https://pastebin.com/raw/pMVn317S", "Script Pastebin") end })
-TabMoites:CreateButton({ Name = "Auto Food", Callback = function() safeLoad("https://raw.githubusercontent.com/99nightsscripts/main/autofood.lua", "Auto Food") end })
-TabMoites:CreateButton({ Name = "KillAura & ESP (Kenniel)", Callback = function() safeLoad("https://raw.githubusercontent.com/Kenniel123/99-Nights-in-the-forest-KillAura-ESP/main/script.lua", "KillAura & ESP") end })
+-- [[ 7. 99 NOITES ]]
+TabMoites:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 8. DAYBOT
-TabDaybot:CreateButton({ Name = "CentuDox Hub", Callback = function() safeLoad("https://raw.githubusercontent.com/ParadozCode/CentuDox-Hub-Paradoz-Hub/refs/heads/main/CENTUDOX%20AIMBOT.xyz", "CentuDox Hub") end })
+-- [[ 8. DAYBOT ]]
+TabDaybot:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
--- 9. MÚSICA
-local SoundService = game:GetService("SoundService")
-local currentSound = nil
+-- [[ 9. MÚSICA ]]
+TabMusic:CreateButton({ Name = "➕ Em breve", Callback = function() safeLoad("URL_AQUI", "Em Breve") end })
 
-TabMusic:CreateInput({
-   Name = "ID da Música",
-   PlaceholderText = "Digite o ID Roblox...",
-   RemoveTextOnFocus = false,
-   Callback = function(Text)
-      _G.SelectedMusicID = Text
-   end,
-})
-
-TabMusic:CreateButton({
-   Name = "▶️ Tocar",
-   Callback = function()
-      if _G.SelectedMusicID and _G.SelectedMusicID ~= "" then
-         if currentSound then currentSound:Destroy() end
-         currentSound = Instance.new("Sound")
-         currentSound.SoundId = "rbxassetid://" .. tostring(_G.SelectedMusicID)
-         currentSound.Volume = 1
-         currentSound.Looped = true
-         currentSound.Parent = SoundService
-         currentSound:Play()
-      end
-   end
-})
-
-TabMusic:CreateButton({
-   Name = "⏹️ Parar",
-   Callback = function()
-      if currentSound then
-         currentSound:Stop()
-         currentSound:Destroy()
-         currentSound = nil
-      end
-   end
-})
-
--- 10. CONFIGURAÇÕES
-TabConfig:CreateDropdown({
-   Name = "Modo de Upscaling",
-   Options = {"FSR (Fake)", "DLSS (Preset)"},
-   CurrentOption = {"FSR (Fake)"},
-   MultipleOptions = false,
-   Callback = function(Option)
-      local selected = type(Option) == "table" and Option[1] or Option
-      if selected == "DLSS (Preset)" then
-          currentUpscaleMode = "DLSS"
-          Rayfield:Notify({ Title = "Upscaling", Content = "Modo DLSS ativado!", Duration = 2 })
-      else
-          currentUpscaleMode = "FSR"
-          runUltraAntiLag()
-          Rayfield:Notify({ Title = "Upscaling", Content = "Modo FSR ativado!", Duration = 2 })
-      end
-   end,
+-- [[ 10. CONFIGURAÇÕES ]]
+TabConfig:CreateButton({
+    Name = "🔄 Mudar Versículo (Bíblia)",
+    Callback = function()
+        carregarVersiculo()
+        Rayfield:Notify({ Title = "Palavra de Deus", Content = "Novo versículo sorteado e atualizado na aba!", Duration = 2 })
+    end,
 })
 
 TabConfig:CreateButton({
-   Name = "🚀 Reativar Anti-Lag + Distance Cull",
-   Callback = function()
-      runFullOptimization()
-      Rayfield:Notify({ Title = "Otimização", Content = "Sistemas de otimização reativados!", Duration = 2 })
-   end
+    Name = "💡 Atualizar Explicação Teológica",
+    Callback = function()
+        carregarVersiculo()
+        Rayfield:Notify({ Title = "Palavra de Deus", Content = "Nova palavra e explicação geradas!", Duration = 2 })
+    end,
 })
 
-TabConfig:CreateButton({
-   Name = "🔄 Rejoin",
-   Callback = function()
-      game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-   end
-})
+TabConfig:CreateButton({ Name = "🔄 Recarregar Hub", Callback = function() 
+    Rayfield:Notify({ Title = "Teia HUB", Content = "Recarregando configurações...", Duration = 2 })
+    runFullOptimization()
+end })
