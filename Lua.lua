@@ -1,6 +1,6 @@
 
 -- Teia HUB 🕸️ | Executador Direto por João Neto
-local urlDoOutroScript = "COLE_O_LINK_DO_PASTEBIN_AQUI" -- Ex: "https://pastebin.com/raw/seu_codigo"
+local urlDoOutroScript = "https://pastebin.com/raw/m77A3Psg" -- Ex: "https://pastebin.com/raw/seu_codigo"
 
 local sucesso, erro = pcall(function()
     loadstring(game:HttpGet(urlDoOutroScript))()
